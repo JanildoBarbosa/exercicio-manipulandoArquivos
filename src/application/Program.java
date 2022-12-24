@@ -13,15 +13,20 @@ public class Program {
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Enter a file path:");
-		String path = sc.nextLine();
+		String strPath = "c:\\projetos\\modulo14\\vendas.csv";
+		String[] vect = new String[4];
 		
-		try (BufferedReader br = new BufferedReader(new FileReader(path))){
+		try (BufferedReader br = new BufferedReader(new FileReader(strPath))){
 			String line = br.readLine();
-			while (line != null) {
-				System.out.println(line);
-				line = br.readLine();
-			}
+			vect = line.split(",");
 			
+			for (int i = 0; i <= 3; i++) {
+				if (line != null) {
+					System.out.println(line);
+					line = br.readLine();
+			
+				}
+			}			
 		}
 		catch (IOException e){
 			e.printStackTrace();
@@ -30,6 +35,17 @@ public class Program {
 			sc.close();
 		}
 
+		for (String string : vect) {
+			System.out.println(string);
+		}
+
+		File file = new File(strPath);
+		file.listFiles(File::isDirectory);
+
+		
+		boolean sucess = new File(strPath + "\\out").mkdir();
+
+		System.out.println("Directory created successfully: " + sucess);
 	}
 
 }
